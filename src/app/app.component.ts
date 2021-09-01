@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {PostService} from "./posts/post.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'material-m';
+  constructor(private readonly postService: PostService) {
+  }
+  getPosts() {
+    return this.postService.posts;
+  }
 }

@@ -1,0 +1,12 @@
+<h1 #postTitle>Posts</h1>
+<app-post-item *ngFor="let post of getPosts()" [post]="post" (onPostLike)="onButtonClicked($event)">
+  <ng-container body1>
+    <h2>{{post?.title}}</h2>
+    <p>{{post?.description}}</p>
+    <strong>{{post?.likes}}</strong>
+  </ng-container>
+
+  <ng-container postFooter>
+    <div>Footer content!</div>
+  </ng-container>
+</app-post-item>

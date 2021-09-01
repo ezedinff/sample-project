@@ -1,9 +1,10 @@
 # MaterialM
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
-
-[Document to guide the training](https://docs.google.com/document/d/11ladCrnrLuB9WRQGNCErhcN8wQ1ju0KSSNiHLD8Y_-Y/edit?usp=sharing)
-
+## Resources
+- [Document to guide the training](https://docs.google.com/document/d/11ladCrnrLuB9WRQGNCErhcN8wQ1ju0KSSNiHLD8Y_-Y/edit?usp=sharing)
+- we will use components from [angular material](https://material.angular.io/) and [antd](https://ant.design/)
+- we will use [flex-layout](https://github.com/angular/flex-layout) for responsive design
 
 ## Development server
 

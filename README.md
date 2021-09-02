@@ -6,6 +6,21 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - we will use components from [angular material](https://material.angular.io/) and [antd](https://ant.design/)
 - we will use [flex-layout](https://github.com/angular/flex-layout) for responsive design
 
+
+
+
+## How to run the project
+1. clone the project
+```angular2html
+git clone https://github.com/ezedinff/sample-project
+```
+2. got to sample-project directory
+  ```angular2html
+cd sample-project
+```
+3. run **npm install**
+4. after successfully installed the dependencies run ***npm start***
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

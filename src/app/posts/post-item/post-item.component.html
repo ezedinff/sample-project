@@ -3,5 +3,12 @@
 <ng-content select="[body1]"></ng-content>
 <br>
 <br>
-<button (click)="handleClick()">Add Like</button>
-<ng-content select="[postFooter]"></ng-content>
+<div style="display: flex; justify-content: flex-end; border-top: 5px solid #b5b5b5; ">
+  <button style="margin-right: 24px" class="btn" (click)="handleClick()">Add Like</button>
+  <button class="btn" [ngClass]="{'btn-primary': showCommentForm}" (click)="toggleCommentForm()">comment</button>
+</div>
+
+<app-comment *ngIf="showCommentForm"
+             [comments]="post.comments"
+             [postId]="post.id"
+></app-comment>

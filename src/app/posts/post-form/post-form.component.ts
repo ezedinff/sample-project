@@ -18,7 +18,7 @@ export class PostFormComponent implements OnInit {
   }
 
   handleSubmit (form: NgForm) {
-    // const response = this.postService.createPost(this.post);
+    const response = this.postService.createPost(this.post);
     const checkForNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const titleControl = form.control.get("title");
     console.log(form.valid, titleControl?.value);
@@ -30,9 +30,9 @@ export class PostFormComponent implements OnInit {
         })
       }
     });
-    // if (response) {
-    //   alert("Post created Successfully!");
-    //   form.resetForm();
-    // }
+    if (response) {
+      alert("Post created Successfully!");
+      form.resetForm();
+    }
   }
 }

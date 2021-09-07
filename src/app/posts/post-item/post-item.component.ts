@@ -20,12 +20,16 @@ import {Post} from '../post/post.component';
 })
 export class PostItemComponent implements OnInit{
 
-  @Input() post: Post | undefined; // pass data from child to parent
+  @Input() post!: Post; // pass data from child to parent
   @Output() onPostLike = new EventEmitter(); // dispatch events from child to parent
   counter = 1;
+  showCommentForm = false;
   constructor() { }
   handleClick() {
     this.onPostLike.emit(this.post?.id);
+  }
+  toggleCommentForm() {
+    this.showCommentForm = !this.showCommentForm;
   }
 
   ngOnInit(): void {

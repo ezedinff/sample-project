@@ -5,10 +5,12 @@ export class PostModel implements Post{
   id: number;
   likes: number;
   title: string;
+  comments: Array<string>;
   constructor(title: string, description: string) {
     this.title = title;
     this.description = description;
     this.id = Math.random();
     this.likes = 0;
+    this.comments = [];
   }
 }

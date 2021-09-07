@@ -6,6 +6,7 @@ export interface Post {
   title: string;
   description: string;
   likes: number;
+  comments: Array<string>;
 }
 
 
@@ -32,7 +33,7 @@ export class PostComponent implements OnInit {
     })
   }
   getPosts(): Array<Post> {
-    return this.postService.posts;
+    return  this.postService.posts;
   }
   getTitle() {
     return this.title;

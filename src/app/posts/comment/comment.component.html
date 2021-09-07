@@ -1,0 +1,24 @@
+<div class="form-group">
+  <textarea
+    placeholder="write your comment here..."
+    rows="4" class="form-control"
+    required
+    [(ngModel)]="comment"
+    #commentBox="ngModel"
+  ></textarea>
+  <button class="btn btn-primary"
+          (click)="addComment()"
+          [disabled]="commentBox.invalid">
+    Add Comment
+  </button>
+</div>
+
+<div class="container">
+  <div class="card" *ngFor="let comment of comments">
+    <div class="card-body">
+      <div class="card-text">
+        {{comment}}
+      </div>
+    </div>
+  </div>
+</div>

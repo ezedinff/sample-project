@@ -3,3 +3,15 @@
 h1{
   font-weight: bolder;
 }
+.container {
+  background-color: #eee;
+  padding: 1.5em;
+}
+.card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-actions > .btn {
+  margin: 0 16px;
+}

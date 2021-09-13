@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PostService} from "../post.service";
+import {UserService} from "../../user/user.service";
 
 export interface Post {
   id: number;
@@ -19,7 +20,8 @@ export interface Post {
 export class PostComponent implements OnInit {
   title = "title from post component";
  // @ViewChild("postTitle") postTitle: HTMLElement;
-  constructor(private readonly postService: PostService) { }
+  constructor(private readonly postService: PostService,
+              private readonly userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -37,5 +39,9 @@ export class PostComponent implements OnInit {
   }
   getTitle() {
     return this.title;
+  }
+
+  getUser() {
+    return this.userService.currentUser;
   }
 }

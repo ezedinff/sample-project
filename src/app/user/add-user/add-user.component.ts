@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../user.service";
+import {PostService} from "../../posts/post.service";
+import {User} from "../user";
 
 @Component({
   selector: 'app-add-user',
@@ -39,15 +42,14 @@ export class AddUserComponent implements OnInit {
       name: 'Djibouti',
     }
   ];
-  constructor(private readonly formBuilder: FormBuilder) { }
+  constructor(private readonly formBuilder: FormBuilder,
+              private readonly userService: UserService) { }
 
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group({
       firstName: [
         "",
-        Validators.required,
-        Validators.min(2),
-        Validators.max(15)
+        Validators.required
       ],
       lastName: '',
       gender: '',
@@ -68,13 +70,15 @@ export class AddUserComponent implements OnInit {
       this.cities = this.countries.find(country => country.id == countryId)?.cities ?? [];
     });
   }
-
+  getCountry(countryId: number) {
+    return this.countries.find(country => country.id == countryId);
+  }
+  // getCity(countryId: number, cityId: number) {
+  //   return this.countries.find(country => country.id == countryId)?
+  //     .cities.find()
+  // }
   handleSubmit() {
-    if (this.registrationForm.valid) {
-      // TODO: create a new user
-      this.registrationForm.valueChanges.subscribe(values => {
-        console.log(values);
-      })
-    }
+    let user = this.registrationForm.value as User;
+    this.userService.register(user);
   }
 }

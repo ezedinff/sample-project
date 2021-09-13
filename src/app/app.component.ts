@@ -8,9 +8,4 @@ import {PostService} from "./posts/post.service";
 })
 export class AppComponent {
   title = 'material-m';
-  constructor(private readonly postService: PostService) {
-  }
-  getPosts() {
-    return this.postService.posts;
-  }
 }

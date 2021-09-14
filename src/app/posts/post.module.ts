@@ -6,6 +6,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import { PostFormComponent } from './post-form/post-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommentComponent} from "./comment/comment.component";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import {CommentComponent} from "./comment/comment.component";
     CommentComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     FormsModule,
   ],
   providers: [

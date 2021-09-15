@@ -51,7 +51,6 @@ export class UserService {
         return user;
     });
     localStorage.setItem("users", JSON.stringify(this.users));
-    this.notFriends=this.users.filter(user=>user.friend==false);
   }
 
 

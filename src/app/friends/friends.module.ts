@@ -13,7 +13,7 @@ import { FriendListComponent } from './friend-list/friend-list.component';
     FriendListComponent,],
     exports:[FriendComponent,
       FriendRequestsComponent,
-      FriendListComponent,],
+       FriendListComponent,],
   imports: [
     CommonModule
   ]

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from "./user";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -17,7 +18,7 @@ export class UserService {
     let newUser = {...user, id: this.getId()};
     this.users.push(newUser);
     localStorage.setItem("users", JSON.stringify(this.users));
-    this.currentUser = user;
+    this.currentUser = newUser;
     localStorage.setItem("current_user", JSON.stringify(user));
     this.router.navigate(["main"]).then();
   }
@@ -39,4 +40,47 @@ export class UserService {
     });
   }
 
+  getFriends(): Array<User> {
+    if (!this.currentUser?.friends) {
+      Object.assign(this.currentUser, {...this.currentUser, friends: []});
+      localStorage.setItem("current_user", JSON.stringify(this.currentUser));
+    }
+    return this.users.filter(u => this.currentUser?.friends?.includes(u.id));
+  }
+
+  getSuggestions(): Array<User> {
+
+    // current_user 1
+    // friends [2, 3, 5]
+    // e = [1, 2, 3, 5]
+    // users [1, 2, 3, 4, 5, 6]
+    // suggestions [4, 6]
+    const e: Array<number> = []; // [1, 2, 3,5]
+    if (this.currentUser) {
+      e.push(this.currentUser.id);
+    } else {
+      return [];
+    }
+    if (this.currentUser?.friends) {
+      this.currentUser?.friends.forEach(f => e.push(f));
+    }
+    return this.users.filter(u => !e.includes(u.id));
+  }
+
+  addFriend(userId: number) {
+    const isAlreadyFriend = this.currentUser?.friends?.includes(userId);
+    if (!isAlreadyFriend) {
+      const temp: Array<number> = []
+      this.currentUser?.friends?.forEach(f => temp.push(f));
+      Object.assign(this.currentUser, {...this.currentUser, friends: [...temp, userId]})
+      localStorage.setItem("current_user", JSON.stringify(this.currentUser));
+      this.users = this.users.map(user => {
+        if (user.id === this.currentUser?.id) {
+          return this.currentUser;
+        }
+        return user;
+      });
+      localStorage.setItem("users", JSON.stringify(this.users));
+    }
+  }
 }

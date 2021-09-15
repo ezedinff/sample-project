@@ -1,0 +1,19 @@
+<div class="avator">
+  <div class="avator__header">
+    <div class="image-container">
+      <img
+        width="64"
+        height="64"
+        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" loading="lazy" alt="" class="img-circle" />
+    </div>
+
+    <p class="avator__title">
+      {{user.firstName}}&nbsp;{{user.lastName}}
+    </p>
+  </div>
+
+  <div class="avator__action" *ngIf="!isFriend">
+    <button class="btn btn-default" (click)="addUser()">Add as a friend</button>
+  </div>
+
+</div>

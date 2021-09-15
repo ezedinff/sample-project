@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Friend Suggestions</h4>
+      <!-- suggestions -->
+      <app-user-avator *ngFor="let suggestion of suggestions"
+      [user]="suggestion" (onAddUser)="onAddUser($event)"></app-user-avator>
+    </div>
+    <div class="col-md-6">
+      <!-- friends -->
+      <h4>Friends</h4>
+      <app-user-info *ngFor="let friend of friends"
+      [user]="friend"></app-user-info>
+    </div>
+  </div>
+</div>

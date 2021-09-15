@@ -5,6 +5,8 @@ import { NavComponent } from './nav/nav.component';
 import {RouterModule, Routes} from "@angular/router";
 import {PostModule} from "../posts/post.module";
 import {PostComponent} from "../posts/post/post.component";
+import { FriendsModule } from '../friends/friends.module';
+import { FriendComponent } from '../friends/friend/friend.component';
 const routes: Routes = [
   {
     path: "", // /main
@@ -13,6 +15,10 @@ const routes: Routes = [
       {
         path: "feeds", // /main/feeds
         component: PostComponent
+      },
+      {
+        path: "friends", // /main/feeds
+        component: FriendComponent
       },
       {
         path: "",
@@ -32,7 +38,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    PostModule
+    PostModule,
+    FriendsModule
   ]
 })
 export class MainModule { }

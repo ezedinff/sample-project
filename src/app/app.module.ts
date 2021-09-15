@@ -8,6 +8,7 @@ import {UserModule} from "./user/user.module";
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+import { FriendsModule } from './friends/friends.module';
 
 
 // admin/dashboard
@@ -28,6 +29,7 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
     BrowserModule,
     PostModule,
     UserModule,
+    FriendsModule,
     FormsModule, // template form,
     ReactiveFormsModule,
     AppRoutingModule

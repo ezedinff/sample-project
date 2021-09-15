@@ -5,10 +5,14 @@ import {Router} from "@angular/router";
 @Injectable({providedIn: 'root'})
 export class UserService {
   users!: User[]; // zero length + 1
+  friends!:User[];
+  notFriends!:User[];
   currentUser?: User; // memory || localstorage
   constructor(private readonly router: Router) {
     this.users = JSON.parse(<string>localStorage.getItem('users')) ?? [];
     this.currentUser = JSON.parse(<string>localStorage.getItem("current_user"));
+    this.friends=this.users.filter(user=>user.friend==true);
+    this.notFriends=this.users.filter(user=>user.friend==false);
   }
   getId() {
     return this.users.length > 0 ? this.users[this.users.length - 1].id + 1 : 1;
@@ -38,5 +42,17 @@ export class UserService {
       localStorage.removeItem("current_user");
     });
   }
+
+  makeFriend(id:number){
+    this.users = this.users.map((user) => {
+        if (user.id === id) {
+          user.friend = true;
+        }
+        return user;
+    });
+    localStorage.setItem("users", JSON.stringify(this.users));
+    this.notFriends=this.users.filter(user=>user.friend==false);
+  }
+
 
 }

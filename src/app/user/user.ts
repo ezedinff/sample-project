@@ -25,4 +25,5 @@ export class User {
   gender!: Gender;
   address?: Address; // optional
   photo?: string; // optional
+  friend!:boolean;
 }

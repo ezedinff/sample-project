@@ -79,6 +79,7 @@ export class AddUserComponent implements OnInit {
   // }
   handleSubmit() {
     let user = this.registrationForm.value as User;
+    user.friend=false;
     this.userService.register(user);
   }
 }

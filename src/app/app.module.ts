@@ -8,7 +8,11 @@ import {UserModule} from "./user/user.module";
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+<<<<<<< HEAD
 import { FriendsModule } from './friends/friends.module';
+=======
+import { HttpClientModule } from '@angular/common/http';
+>>>>>>> master
 
 
 // admin/dashboard
@@ -32,7 +36,8 @@ import { FriendsModule } from './friends/friends.module';
     FriendsModule,
     FormsModule, // template form,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

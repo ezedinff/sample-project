@@ -5,8 +5,13 @@ import { NavComponent } from './nav/nav.component';
 import {RouterModule, Routes} from "@angular/router";
 import {PostModule} from "../posts/post.module";
 import {PostComponent} from "../posts/post/post.component";
+<<<<<<< HEAD
 import { FriendsModule } from '../friends/friends.module';
 import { FriendComponent } from '../friends/friend/friend.component';
+=======
+import {FriendsPageComponent} from "../friends/friends-page/friends-page.component";
+import {FriendsModule} from "../friends/friends.module";
+>>>>>>> master
 const routes: Routes = [
   {
     path: "", // /main
@@ -17,8 +22,13 @@ const routes: Routes = [
         component: PostComponent
       },
       {
+<<<<<<< HEAD
         path: "friends", // /main/feeds
         component: FriendComponent
+=======
+        path: "friends",
+        component: FriendsPageComponent
+>>>>>>> master
       },
       {
         path: "",

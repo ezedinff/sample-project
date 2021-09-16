@@ -8,6 +8,7 @@ import {UserModule} from "./user/user.module";
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
+import { HttpClientModule } from '@angular/common/http';
 
 
 // admin/dashboard
@@ -30,7 +31,8 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
     UserModule,
     FormsModule, // template form,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

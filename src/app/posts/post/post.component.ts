@@ -18,6 +18,7 @@ export interface Post {
   encapsulation: ViewEncapsulation.Emulated
 })
 export class PostComponent implements OnInit {
+  posts!:Post[];
   title = "title from post component";
  // @ViewChild("postTitle") postTitle: HTMLElement;
   constructor(private readonly postService: PostService,
@@ -27,15 +28,26 @@ export class PostComponent implements OnInit {
   }
 
   onButtonClicked(id: number) {
-    this.postService.posts = this.postService.posts.map(post => {
-      if (post.id === id) {
-        post.likes += 1;
-      }
-      return post;
-    })
+    // this.postService.getPosts().subscribe(post => {
+    //   if (post. === id) {
+    //         post.likes += 1;
+    //       }
+    //   this.posts = post;
+    // });
+    // this.postService.posts = this.postService.posts.map(post => {
+    //   if (post.id === id) {
+    //     post.likes += 1;
+    //   }
+    //   return post;
+    // })
+    // Object.assign(this.post, {...this.post, comments: [...this.comments, this.comment]})
+    // this.postService.addLike(this.post);
   }
   getPosts(): Array<Post> {
-    return  this.postService.posts;
+    this.postService.getPosts().subscribe(post => {
+      this.posts = post;
+    });
+    return  this.posts;
   }
   getTitle() {
     return this.title;

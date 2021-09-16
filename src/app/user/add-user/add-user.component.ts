@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../user.service";
 import {PostService} from "../../posts/post.service";
 import {User} from "../user";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -43,7 +44,8 @@ export class AddUserComponent implements OnInit {
     }
   ];
   constructor(private readonly formBuilder: FormBuilder,
-              private readonly userService: UserService) { }
+              private readonly userService: UserService,
+              private readonly router:Router) { }
 
   ngOnInit(): void {
     this.registrationForm = this.formBuilder.group({
@@ -79,6 +81,10 @@ export class AddUserComponent implements OnInit {
   // }
   handleSubmit() {
     let user = this.registrationForm.value as User;
-    this.userService.register(user);
+    // this.userService.register(user);
+    this.userService.register(user).subscribe(() => {
+      this.router.navigate(["main"]).then();
+      }
+    );
   }
 }

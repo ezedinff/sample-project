@@ -36,5 +36,6 @@ export class PostFormComponent implements OnInit {
     //   alert("Post created Successfully!");
     //   form.resetForm();
     // }
+    this.postService.createPost(form.value);
   }
 }

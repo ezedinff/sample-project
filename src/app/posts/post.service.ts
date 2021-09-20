@@ -7,8 +7,7 @@ import {UserService} from "../user/user.service";
 @Injectable()
 export class PostService {
   posts!: Array<Post>;
-  constructor(private httpClient: HttpClient,
-              private userService: UserService) {
+  constructor(private httpClient: HttpClient) {
   }
 
   getPosts(): Promise<Array<Post>> {
@@ -24,24 +23,29 @@ export class PostService {
   }
   createPost(post: Post): boolean {
     try{
-      const newPost = {...post};
-      this.posts.push(newPost);
-      this.saveToDb(this.posts);
+      // console.log(post);
+      this.httpClient.post<Post>(getUrl(apiRoutes.post), post).toPromise();
+      // const newPost = {...post};
+      // this.posts.push(newPost);
+      // this.saveToDb(this.posts);
       return true;
     } catch (err) {
       return false;
     }
   }
   createComment(postId: string, comment: Comment) {
-    this.posts = this.posts.map((post) => {
-        if (post._id === postId) {
-          if (!post.comments){
-            post.comments = [];
-          }
-          post.comments.push(comment);
-        }
-        return post;
-    });
+
+    this.httpClient.post<Post>(`${getUrl(apiRoutes.post)}/${postId}/comments`, comment).toPromise();
+
+    // this.posts = this.posts.map((post) => {
+    //     if (post._id === postId) {
+    //       if (!post.comments){
+    //         post.comments = [];
+    //       }
+    //       post.comments.push(comment);
+    //     }
+    //     return post;
+    // });
 
     // const newPosts = [];
     // for (let post of this.posts) {
@@ -57,7 +61,7 @@ export class PostService {
     // }
     // this.posts = newPosts;
     // mutable and immutable object
-    this.saveToDb(this.posts);
+    // this.saveToDb(this.posts);
   }
 
 

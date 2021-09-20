@@ -2,12 +2,18 @@ import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PostService} from "../post.service";
 import {UserService} from "../../user/user.service";
 
+export interface Comment {
+  text: string;
+  userId: string;
+}
+
 export interface Post {
-  id: number;
+  _id?: string;
+  userId?: string;
   title: string;
   description: string;
   likes: number;
-  comments: Array<string>;
+  comments: Array<Comment>;
 }
 
 
@@ -20,15 +26,19 @@ export interface Post {
 export class PostComponent implements OnInit {
   title = "title from post component";
  // @ViewChild("postTitle") postTitle: HTMLElement;
+  posts!: Array<Post>;
   constructor(private readonly postService: PostService,
               private readonly userService: UserService) { }
 
   ngOnInit(): void {
+   this.postService.getPosts().then(posts => {
+     this.posts = posts;
+   }).catch(err => alert(err.error.message));
   }
 
-  onButtonClicked(id: number) {
+  onButtonClicked(id: string) {
     this.postService.posts = this.postService.posts.map(post => {
-      if (post.id === id) {
+      if (post._id === id) {
         post.likes += 1;
       }
       return post;

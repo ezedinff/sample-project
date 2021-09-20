@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
-import {Post} from "./post/post.component";
-import {PostModel} from "./post-model";
+import {Post, Comment} from "./post/post.component";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {apiRoutes, getUrl} from "../constants";
+import {UserService} from "../user/user.service";
 
 @Injectable()
 export class PostService {
-  posts: Array<Post> = JSON.parse(localStorage.getItem("posts") ?? "");
-  constructor() {
+  posts!: Array<Post>;
+  constructor(private httpClient: HttpClient,
+              private userService: UserService) {
   }
+
+  getPosts(): Promise<Array<Post>> {
+    return this.httpClient.get<Array<Post>>(getUrl(apiRoutes.post)).toPromise();
+  }
+
   getNextId() {
     return this.posts.length + 1;
   }
@@ -14,9 +22,9 @@ export class PostService {
     console.log(posts);
     localStorage.setItem("posts", JSON.stringify(posts));
   }
-  createPost(post: PostModel): boolean {
+  createPost(post: Post): boolean {
     try{
-      const newPost = {...post, id: this.getNextId()};
+      const newPost = {...post};
       this.posts.push(newPost);
       this.saveToDb(this.posts);
       return true;
@@ -24,9 +32,9 @@ export class PostService {
       return false;
     }
   }
-  createComment(postId: number, comment: string) {
+  createComment(postId: string, comment: Comment) {
     this.posts = this.posts.map((post) => {
-        if (post.id === postId) {
+        if (post._id === postId) {
           if (!post.comments){
             post.comments = [];
           }

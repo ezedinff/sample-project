@@ -9,6 +9,6 @@
 </div>
 
 <app-comment *ngIf="showCommentForm"
-             [comments]="post.comments"
-             [postId]="post.id"
+             [comments]="post?.comments"
+             [postId]="post?._id"
 ></app-comment>

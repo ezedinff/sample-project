@@ -1,11 +1,6 @@
 <h1>Create a new post</h1>
 <div class="container">
   <form #postForm="ngForm" (ngSubmit)="handleSubmit(postForm)">
-    <ul>
-      <li><b>Pristine</b>: {{postForm.pristine}}</li>
-      <li><b>Dirty</b>: {{postForm.dirty}}</li>
-      <li><b>Touched</b>: {{postForm.touched}}</li>
-    </ul>
     <div class="container">
       <div class="form-group">
         <input type="text"

@@ -33,3 +33,8 @@ export class User {
 // no_friend: [4,6,7,8,9]
 // mutual_friends
 
+export class UserResponse {
+  user!: User;
+  access!: string;
+  refresh!: string;
+}

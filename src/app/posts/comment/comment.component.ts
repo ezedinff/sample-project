@@ -7,15 +7,17 @@ import {PostService} from "../post.service";
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input() comments!: Array<string>; // string[] | undefined
-  @Input() postId!: number;
-  comment="";
+  @Input() comments: any; // string[] | undefined
+  @Input() postId?: string;
+  comment = "";
   constructor(private readonly postService: PostService) { }
 
   ngOnInit(): void {
   }
   addComment() {
     // alert(this.comment);
-    this.postService.createComment( this.postId, this.comment);
+    if (this.postId && this.comments) {
+      this.postService.createComment( this.postId, {text: this.comment, userId: ""});
+    }
   }
 }

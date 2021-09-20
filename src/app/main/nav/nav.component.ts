@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
   }
 
   getCurrentUserName() {
-    return `${this.userService.currentUser?.firstName} ${this.userService.currentUser?.lastName}`;
+    return `${this.userService.currentUser?.user.firstName} ${this.userService.currentUser?.user.lastName}`;
   }
 
   logout() {

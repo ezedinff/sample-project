@@ -20,7 +20,7 @@ export class UserService {
   }
 
   createUser(user: User): Promise<UserResponse> {
-    return this.httpClient.post<UserResponse>(apiRoutes.auth.register, user).toPromise();
+    return this.httpClient.post<UserResponse>(getUrl(apiRoutes.auth.register),user).toPromise();
   }
   getId() {
     return this.users.length > 0 ? this.users[this.users.length - 1].id + 1 : 1;

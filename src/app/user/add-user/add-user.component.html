@@ -116,7 +116,9 @@
           </div>
         </div>
 
-        <button class="btn btn-primary" (click)="handleSubmit()">Create A User</button>
+        <button
+          [disabled]="registrationForm.invalid"
+          class="btn btn-primary" (click)="handleSubmit()">Create A User</button>
       </form>
     </div>
 

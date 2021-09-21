@@ -3,62 +3,40 @@ import {Post, Comment} from "./post/post.component";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {apiRoutes, getUrl} from "../constants";
 import {UserService} from "../user/user.service";
-
+// /posts - list of post
+// /posts - create a post
+// /posts/id/comments // create a comment
 @Injectable()
 export class PostService {
   posts!: Array<Post>;
   constructor(private httpClient: HttpClient,
               private userService: UserService) {
+    this.getPosts().then(posts => {
+      this.posts = posts;
+    }).catch(err => alert(err.error.message));
   }
 
   getPosts(): Promise<Array<Post>> {
     return this.httpClient.get<Array<Post>>(getUrl(apiRoutes.post)).toPromise();
   }
-
-  getNextId() {
-    return this.posts.length + 1;
+ async createPost(post: Post): Promise<Post> {
+    const newPost = await this.httpClient.post<Post>(getUrl(apiRoutes.post), post).toPromise();
+    this.posts.push(newPost);
+    return newPost;
   }
   saveToDb(posts: Array<Post>) {
     console.log(posts);
     localStorage.setItem("posts", JSON.stringify(posts));
   }
-  createPost(post: Post): boolean {
-    try{
-      const newPost = {...post};
-      this.posts.push(newPost);
-      this.saveToDb(this.posts);
-      return true;
-    } catch (err) {
-      return false;
-    }
-  }
-  createComment(postId: string, comment: Comment) {
-    this.posts = this.posts.map((post) => {
+  async createComment(postId: string, comment: Comment): Promise<Post> {
+     const url = getUrl(`${apiRoutes.post}/${postId}/comments`);
+     const newPost = await this.httpClient.post<Post>(url, comment).toPromise();
+      this.posts = this.posts.map((post) => {
         if (post._id === postId) {
-          if (!post.comments){
-            post.comments = [];
-          }
-          post.comments.push(comment);
+          return newPost;
         }
         return post;
-    });
-
-    // const newPosts = [];
-    // for (let post of this.posts) {
-    //   if (post.id === postId) {
-    //     // if post's comments is undefined
-    //     // initialize it empty array
-    //     if (!post.comments) {
-    //       post.comments = [];
-    //     }
-    //     post.comments.push(comment);
-    //   }
-    //   newPosts.push(post);
-    // }
-    // this.posts = newPosts;
-    // mutable and immutable object
-    this.saveToDb(this.posts);
+      })
+     return newPost;
   }
-
-
 }

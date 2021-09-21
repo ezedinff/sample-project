@@ -31,27 +31,13 @@ export class PostComponent implements OnInit {
               private readonly userService: UserService) { }
 
   ngOnInit(): void {
-   this.postService.getPosts().then(posts => {
-     this.posts = posts;
-   }).catch(err => alert(err.error.message));
+
   }
 
   onButtonClicked(id: string) {
-    this.postService.posts = this.postService.posts.map(post => {
-      if (post._id === id) {
-        post.likes += 1;
-      }
-      return post;
-    })
-  }
-  getPosts(): Array<Post> {
-    return  this.postService.posts;
-  }
-  getTitle() {
-    return this.title;
-  }
 
-  getUser() {
-    return this.userService.currentUser;
+  }
+  getPosts() {
+    return this.postService.posts;
   }
 }

@@ -15,7 +15,7 @@ export class Address {
 
 
 export class User {
-  id!: number;
+  _id!: string;
   firstName!: string;
   lastName!: string;
   email!: string;

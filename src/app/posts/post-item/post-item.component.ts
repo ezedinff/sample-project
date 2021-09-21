@@ -24,6 +24,7 @@ export class PostItemComponent implements OnInit{
   @Output() onPostLike = new EventEmitter(); // dispatch events from child to parent
   counter = 1;
   showCommentForm = false;
+  @Output() onCommentCreate = new EventEmitter();
   constructor() { }
   handleClick() {
     this.onPostLike.emit(this.post?._id);

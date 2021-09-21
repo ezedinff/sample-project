@@ -19,7 +19,7 @@ export class UserAvatorComponent implements OnInit {
   }
 
   addUser(){
-    this.onAddUser.emit(this.user.id);
+    this.onAddUser.emit(this.user._id);
   }
 
 }

@@ -15,8 +15,7 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
   }
   addComment() {
-    // alert(this.comment);
-    if (this.postId && this.comments) {
+    if (this.postId) {
       this.postService.createComment( this.postId, {text: this.comment, userId: ""});
     }
   }

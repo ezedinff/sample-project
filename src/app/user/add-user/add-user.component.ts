@@ -79,6 +79,6 @@ export class AddUserComponent implements OnInit {
   // }
   handleSubmit() {
     let user = this.registrationForm.value as User;
-    this.userService.register(user);
+    this.userService.register(user).then((_) => this.registrationForm.reset());
   }
 }

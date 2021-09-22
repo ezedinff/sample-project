@@ -8,7 +8,6 @@ import {apiRoutes, getUrl} from "../constants";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
-  users!: User[]; // zero length + 1
   currentUser!: UserResponse; // memory || localstorage
   counter = new BehaviorSubject(0);
   constructor(private readonly router: Router,
@@ -20,10 +19,7 @@ export class UserService {
   }
 
   createUser(user: User): Promise<UserResponse> {
-    return this.httpClient.post<UserResponse>(getUrl(apiRoutes.auth.register),user).toPromise();
-  }
-  getId() {
-    return this.users.length > 0 ? this.users[this.users.length - 1].id + 1 : 1;
+    return this.httpClient.post<UserResponse>(getUrl(apiRoutes.auth.register), user).toPromise();
   }
   async register(user: User) {
     this.createUser(user).then((loggedUser) => {
@@ -55,7 +51,8 @@ export class UserService {
       Object.assign(this.currentUser, {...this.currentUser, friends: []});
       localStorage.setItem("current_user", JSON.stringify(this.currentUser));
     }
-    return this.users.filter(u => this.currentUser.user.friends?.includes(u.id));
+    //return this.users.filter(u => this.currentUser.user.friends?.includes(u.id));
+    return [];
   }
 
   getSuggestions(): Array<User> {
@@ -65,16 +62,17 @@ export class UserService {
     // e = [1, 2, 3, 5]
     // users [1, 2, 3, 4, 5, 6]
     // suggestions [4, 6]
-    const e: Array<number> = []; // [1, 2, 3,5]
+    const e: Array<string> = []; // [1, 2, 3,5]
     if (this.currentUser) {
-      e.push(this.currentUser.user.id);
+      e.push(this.currentUser.user._id);
     } else {
       return [];
     }
     if (this.currentUser.user.friends) {
       this.currentUser.user.friends.forEach((f: any) => e.push(f));
     }
-    return this.users.filter(u => !e.includes(u.id));
+    // return this.users.filter(u => !e.includes(u.id));
+    return [];
   }
 
   addFriend(userId: number) {
@@ -84,13 +82,13 @@ export class UserService {
       this.currentUser.user.friends?.forEach((f: any) => temp.push(f));
       Object.assign(this.currentUser, {...this.currentUser, friends: [...temp, userId]})
       localStorage.setItem("current_user", JSON.stringify(this.currentUser));
-      this.users = this.users.map(user => {
-        if (user.id === this.currentUser.user.id) {
-          return this.currentUser.user;
-        }
-        return user;
-      });
-      localStorage.setItem("users", JSON.stringify(this.users));
+      // this.users = this.users.map(user => {
+      //   if (user.id === this.currentUser.user.id) {
+      //     return this.currentUser.user;
+      //   }
+      //   return user;
+      // });
+      // localStorage.setItem("users", JSON.stringify(this.users));
     }
   }
 }

@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {UserService} from "./user/user.service";
+import {map} from "rxjs/operators";
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -21,15 +22,13 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       });
     }
-    const response =  next.handle(request);
-    response.subscribe((res) => {
-      const resp = res as HttpResponse<any>;
-      if (resp.body) {
-        if (resp.status != 200) {
-          alert("something goes wrong")
+    return next.handle(request).pipe(
+      map((event: HttpEvent<any>) => {
+        if (event instanceof HttpResponse) {
+          console.log("do something on the response");
         }
-      }
-    });
-    return response;
+        return event;
+      })
+    );
   }
 }

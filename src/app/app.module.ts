@@ -10,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./token.interceptor";
+import { AgePipe } from './age.pipe';
 
 
 // admin/dashboard

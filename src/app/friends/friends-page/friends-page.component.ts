@@ -13,12 +13,20 @@ export class FriendsPageComponent implements OnInit {
   constructor(private readonly userService: UserService) { }
 
   ngOnInit(): void {
-    this.friends = this.userService.getFriends();
-    this.suggestions = this.userService.getSuggestions();
+    this.userService.getFriends().then((friends) => {
+      this.friends = friends;
+    })
+    this.userService.getSuggestions().then((suggestions) => {
+      this.suggestions = suggestions;
+    });
   }
-  onAddUser(userId: number) {
+  onAddUser(userId: string) {
     this.userService.addFriend(userId);
-    this.friends = this.userService.getFriends();
-    this.suggestions = this.userService.getSuggestions();
+    this.userService.getFriends().then((friends) => {
+      this.friends = friends;
+    })
+    this.userService.getSuggestions().then((suggestions) => {
+      this.suggestions = suggestions;
+    });
   }
 }

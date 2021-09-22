@@ -4,7 +4,10 @@
       <app-post-form></app-post-form>
     </div>
     <div class="col-md-12 col-sm-12">
-      <app-post-item *ngFor="let post of getPosts()" [post]="post" (onPostLike)="onButtonClicked($event)">
+      <app-post-item
+        *ngFor="let post of getPosts()"
+        [post]="post"
+        (onPostLike)="onButtonClicked($event)">
         <ng-container body1>
           <h2>{{post?.title}}</h2>
           <p>{{post?.description}}</p>

@@ -28,6 +28,7 @@ export class PostService {
     console.log(posts);
     localStorage.setItem("posts", JSON.stringify(posts));
   }
+
   async createComment(postId: string, comment: Comment): Promise<Post> {
      const url = getUrl(`${apiRoutes.post}/${postId}/comments`);
      const newPost = await this.httpClient.post<Post>(url, comment).toPromise();

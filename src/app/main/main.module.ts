@@ -7,6 +7,8 @@ import {PostModule} from "../posts/post.module";
 import {PostComponent} from "../posts/post/post.component";
 import {FriendsPageComponent} from "../friends/friends-page/friends-page.component";
 import {FriendsModule} from "../friends/friends.module";
+import { MessagesModule } from '../messages/messages.module';
+import { MessageComponent } from '../messages/message/message.component';
 const routes: Routes = [
   {
     path: "", // /main
@@ -19,6 +21,10 @@ const routes: Routes = [
       {
         path: "friends",
         component: FriendsPageComponent
+      },
+      {
+        path: "messages",
+        component: MessageComponent
       },
       {
         path: "",
@@ -39,7 +45,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     PostModule,
-    FriendsModule
+    FriendsModule,
+    MessagesModule
   ]
 })
 export class MainModule { }

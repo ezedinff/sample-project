@@ -25,7 +25,7 @@ export class User {
   gender!: Gender;
   address?: Address; // optional
   photo?: string; // optional
-  friends?: Array<number>; // id
+  friends?: Array<string>; // id
 }
 // users [1,2,3,4,5,6,7,8,9]
 // current_user 1

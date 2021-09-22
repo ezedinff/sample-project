@@ -1,5 +1,5 @@
 <app-user-avator [isFriend]="isFriend" [user]="user"></app-user-avator>
 <div class="info">
   <div>friends: {{user.friends ? user.friends?.length : 0}}</div>
-  <div>Age: {{calculateAge(user?.birthDate | date)}}</div>
+  <div>Age: {{user?.birthDate | age}}</div>
 </div>

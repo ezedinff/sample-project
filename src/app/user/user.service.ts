@@ -46,16 +46,16 @@ export class UserService {
     });
   }
 
-  getFriends(): Array<User> {
+  async getFriends(): Promise<Array<User>> {
     if (!this.currentUser?.user.friends) {
       Object.assign(this.currentUser, {...this.currentUser, friends: []});
       localStorage.setItem("current_user", JSON.stringify(this.currentUser));
     }
-    //return this.users.filter(u => this.currentUser.user.friends?.includes(u.id));
-    return [];
+    const users = await this.getUsers();
+    return users.filter(u => this.currentUser.user.friends?.includes(u._id));
   }
 
-  getSuggestions(): Array<User> {
+  async getSuggestions(): Promise<Array<User>> {
 
     // current_user 1
     // friends [2, 3, 5]
@@ -71,24 +71,19 @@ export class UserService {
     if (this.currentUser.user.friends) {
       this.currentUser.user.friends.forEach((f: any) => e.push(f));
     }
-    // return this.users.filter(u => !e.includes(u.id));
-    return [];
+    const users = await this.getUsers()
+    return users.filter(u => !e.includes(u._id));
   }
 
-  addFriend(userId: number) {
+  async addFriend(userId: string) {
     const isAlreadyFriend = this.currentUser.user.friends?.includes(userId);
     if (!isAlreadyFriend) {
-      const temp: Array<number> = []
+      console.log(userId);
+      const temp: Array<number> = []; // friend list
       this.currentUser.user.friends?.forEach((f: any) => temp.push(f));
-      Object.assign(this.currentUser, {...this.currentUser, friends: [...temp, userId]})
+      Object.assign(this.currentUser, {...this.currentUser, user: {...this.currentUser.user, friends: [...temp, userId]}})
       localStorage.setItem("current_user", JSON.stringify(this.currentUser));
-      // this.users = this.users.map(user => {
-      //   if (user.id === this.currentUser.user.id) {
-      //     return this.currentUser.user;
-      //   }
-      //   return user;
-      // });
-      // localStorage.setItem("users", JSON.stringify(this.users));
+      await this.httpClient.post(getUrl(apiRoutes.users.addFriend), {userId}).toPromise();
     }
   }
 }

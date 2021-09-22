@@ -6,6 +6,10 @@ export const apiRoutes = {
     register: '/auth/register',
     refresh: '/auth/refresh'
   },
+  users: {
+    users: "/users",
+    addFriend: "/users/add-friend"
+  },
   post: "/posts"
 };
 

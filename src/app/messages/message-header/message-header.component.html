@@ -1,6 +1,10 @@
 <div class="chat_people">
-  <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" width="50" height="50"> </div>
+  <div class="chat_img">
+     <img
+      [src]="user.photo || 'https://ptetutorials.com/images/user-profile.png'"
+       [alt]="user.firstName" />
+  </div>
     <div class="chat_ib">
-      <h5>Mohammed</h5>
+      <h5>{{user.firstName}} {{user.lastName}}</h5>
     </div>
   </div>

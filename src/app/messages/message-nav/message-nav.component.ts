@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { User } from 'src/app/user/user';
+import { UserService } from 'src/app/user/user.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-message-nav',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-nav.component.scss']
 })
 export class MessageNavComponent implements OnInit {
-
-  constructor() { }
+  @Input()
+  friends!: Array<User>;
+  @Output()
+  onSelectedUser = new EventEmitter();
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
   }
-
+  setSelUser(user: User) {
+    this.onSelectedUser.emit(user);
+  }
 }

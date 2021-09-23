@@ -5,6 +5,10 @@
     </div>
   </div>
   <div class="inbox_chat">
-    <app-message-nav-item></app-message-nav-item>
+    <app-message-nav-item
+     *ngFor="let friend of friends"
+     [user]="friend"
+     (click)="setSelUser(friend)"
+     ></app-message-nav-item>
   </div>
 </div>

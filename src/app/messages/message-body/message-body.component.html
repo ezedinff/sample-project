@@ -1,7 +1,17 @@
 <div class="mesgs">
+  <app-message-header [user]="selectedUser"></app-message-header>
   <div class="msg_history">
-<app-message-body-icomming></app-message-body-icomming>
-<app-message-body-outgoing></app-message-body-outgoing>
+    <ng-container *ngFor="let message of chat?.messages">
+        <app-message-body-icomming
+        *ngIf="current_user != message.sender_id"
+        [message]="message"
+        ></app-message-body-icomming>
+
+        <app-message-body-outgoing
+        *ngIf="current_user == message.sender_id"
+        [message]="message"
+        ></app-message-body-outgoing>
+    </ng-container>
 </div>
 <app-message-body-bottom></app-message-body-bottom>
 </div>

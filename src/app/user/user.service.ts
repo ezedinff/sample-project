@@ -4,15 +4,18 @@ import {Router} from "@angular/router";
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {apiRoutes, getUrl} from "../constants";
-
+import { AngularFirestore } from "@angular/fire/firestore";
 
 @Injectable({providedIn: 'root'})
 export class UserService {
   currentUser!: UserResponse; // memory || localstorage
   counter = new BehaviorSubject(0);
   constructor(private readonly router: Router,
-              private readonly httpClient: HttpClient) {
+              private readonly httpClient: HttpClient,
+              private readonly firstore: AngularFirestore
+              ) {
     this.currentUser = JSON.parse(<string>localStorage.getItem("current_user"));
+   // this.firstore.collection("tests").doc().set({test: "Test Data"});
   }
   getUsers(): Promise<Array<User>> {
     return this.httpClient.get<Array<User>>(getUrl("/users")).toPromise();
@@ -24,7 +27,7 @@ export class UserService {
   async register(user: User) {
     this.createUser(user).then((loggedUser) => {
       this.currentUser = loggedUser;
-      localStorage.setItem("current_user", JSON.stringify(loggedUser));
+      localStorage.setItem("currentnote_user", JSON.stringify(loggedUser));
       this.router.navigate(["main"]).then();
     }).catch((err) => {
       alert("user is not created!");

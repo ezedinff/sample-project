@@ -11,7 +11,9 @@ import {AppRoutingModule} from "./app-routing/app-routing.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenInterceptor} from "./token.interceptor";
 import { AgePipe } from './age.pipe';
-
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { environment } from 'src/environments/environment';
 
 // admin/dashboard
 // admin/users
@@ -30,6 +32,8 @@ import { AgePipe } from './age.pipe';
   imports: [
     BrowserModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     PostModule,
     UserModule,
     FormsModule, // template form,

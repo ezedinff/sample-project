@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "ethio-socialize-9540b": {
+      "hosting": {
+        "material-m": [
+          "ethio-socialize-9540b"
+        ]
+      }
+    }
+  }
+}

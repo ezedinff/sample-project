@@ -10,8 +10,10 @@ import { MessageBodyIcommingComponent } from './message-body-icomming/message-bo
 import { MessageBodyOutgoingComponent } from './message-body-outgoing/message-body-outgoing.component';
 import { FormsModule } from '@angular/forms';
 
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     MessageNavComponent,
@@ -25,7 +27,11 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule,
+    MatFormFieldModule
   ]
 })
 export class MessagesModule { }

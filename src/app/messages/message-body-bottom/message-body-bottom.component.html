@@ -1,6 +1,7 @@
-<div class="type_msg">
-  <div class="input_msg_write">
-    <input [(ngModel)]="message" type="text" class="write_msg" placeholder="Type a message" />
-    <button (click)="onSend()" class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-  </div>
-</div>
+<mat-form-field appearance="outline" style="width: 100%; ">
+  <input matInput [(ngModel)]="message" placeholder="Placeholder">
+  <button mat-icon-button matSuffix  (click)="onSend()" type="button">
+    <mat-icon>send</mat-icon>
+  </button>
+  <mat-hint></mat-hint>
+</mat-form-field>

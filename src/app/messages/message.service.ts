@@ -38,6 +38,7 @@ export class MessageService {
     .pipe(
       tap((response: any) => console.log(response, selectedUser, this.userService.currentUser.user._id)),
       map((chats) => chats.filter((chat: any) =>
+      
       chat.participants.includes(selectedUser) && chat.participants.includes(this.userService.currentUser.user._id))),
       tap(chat => console.log("filtered chats", chat)),
       map(chats => chats[0])

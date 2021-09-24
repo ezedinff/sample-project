@@ -14,6 +14,7 @@ import { AgePipe } from './age.pipe';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from 'src/environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // admin/dashboard
 // admin/users
@@ -38,7 +39,8 @@ import { environment } from 'src/environments/environment';
     UserModule,
     FormsModule, // template form,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

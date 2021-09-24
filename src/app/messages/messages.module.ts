@@ -8,6 +8,7 @@ import { MessageBodyBottomComponent } from './message-body-bottom/message-body-b
 import { MessageComponent } from './message/message.component';
 import { MessageBodyIcommingComponent } from './message-body-icomming/message-body-icomming.component';
 import { MessageBodyOutgoingComponent } from './message-body-outgoing/message-body-outgoing.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,8 @@ import { MessageBodyOutgoingComponent } from './message-body-outgoing/message-bo
     MessageBodyOutgoingComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class MessagesModule { }

@@ -6,7 +6,7 @@
           <app-message-body
           *ngIf="selectedUser"
           [selectedUser]="selectedUser"
-          [chat]="chat$ | async">
+          [chat]="chat">
          </app-message-body>
           <h3 *ngIf="!selectedUser">Please selected user to display</h3>
         </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-message-body-bottom',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-body-bottom.component.scss']
 })
 export class MessageBodyBottomComponent implements OnInit {
-
-  constructor() { }
+  message = '';
+  @Input()
+  chatId!: string;
+  constructor(private readonly messageService: MessageService) { }
 
   ngOnInit(): void {
   }
-
+  onSend() {
+    this.messageService.sendMessage(this.chatId, this.message);
+  }
 }

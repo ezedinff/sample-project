@@ -3,12 +3,12 @@
   <div class="msg_history">
     <ng-container *ngFor="let message of chat?.messages">
         <app-message-body-icomming
-        *ngIf="current_user != message.sender_id"
+        *ngIf="userService?.currentUser?.user?._id != message.sender_id"
         [message]="message"
         ></app-message-body-icomming>
 
         <app-message-body-outgoing
-        *ngIf="current_user == message.sender_id"
+        *ngIf="userService?.currentUser?.user?._id == message.sender_id"
         [message]="message"
         ></app-message-body-outgoing>
     </ng-container>

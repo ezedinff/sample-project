@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/user/user';
+import { UserService } from 'src/app/user/user.service';
 import { Chat } from '../message.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class MessageBodyComponent implements OnInit {
   chat: any = {};
 
   current_user = "2";
-  constructor() { }
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
     console.log(this.chat)

@@ -10,6 +10,7 @@ export class MessageBodyBottomComponent implements OnInit {
   message = '';
   @Input()
   chatId!: string;
+  window = window;
   constructor(private readonly messageService: MessageService) { }
 
   ngOnInit(): void {

@@ -15,6 +15,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AngularFireStorageModule} from "@angular/fire/storage";
 
 // admin/dashboard
 // admin/users
@@ -34,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule, // firestore module import
+    AngularFireStorageModule,
     PostModule,
     UserModule,
     FormsModule, // template form,

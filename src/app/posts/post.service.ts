@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Post, Comment} from "./post/post.component";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {apiRoutes, getUrl} from "../constants";
-import {UserService} from "../user/user.service";
+import {UserService} from '../user/user.service';
 // /posts - list of post
 // /posts - create a post
 // /posts/id/comments // create a comment

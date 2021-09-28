@@ -1,5 +1,11 @@
 <mat-form-field appearance="outline" style="width: 100%; ">
-  <input matInput [(ngModel)]="message" placeholder="Placeholder">
+  <div matPrefix>
+    <input type="file" #file style="display: none;" />
+    <button mat-icon-button (click)="file.click()">
+      <mat-icon style="transform: rotate(-90deg)">attachment</mat-icon>
+    </button>
+  </div>
+  <input matInput [(ngModel)]="message" placeholder="Enter your message here...">
   <button mat-icon-button matSuffix  (click)="onSend()" type="button">
     <mat-icon>send</mat-icon>
   </button>
